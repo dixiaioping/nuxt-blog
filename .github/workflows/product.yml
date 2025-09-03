@@ -36,7 +36,7 @@ jobs:
             echo ".output folder exists"
             echo "OUTPUT_EXISTS=true" >> $GITHUB_ENV
           else
-            echo ".output folder does not exist"
+            echo ".output folder does not exist !"
             echo "OUTPUT_EXISTS=false" >> $GITHUB_ENV
           fi
 
