@@ -13,26 +13,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2. 安装 pnpm
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: 10.2.0
-
       # 3. 设置 Node.js 环境并启用 pnpm 缓存
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '22' # 根据您的项目需求选择版本
-          cache: pnpm
+          cache: npm
 
       # 4. 安装依赖
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
 
       # 5. 构建项目
       - name: Build project
-        run: pnpm run build
+        run: npm run build
 
       # 6. 检查 dist 文件夹是否存在
       - name: Check if .output folder exists
@@ -53,7 +47,7 @@ jobs:
         with:
           host: ${{ secrets.SERVER_HOST }} # 阿里云服务器 IP 地址
           username: ${{ secrets.SERVER_USER }} # 阿里云服务器用户名（如 root）
-          key: ${{ secrets.SSH_PRIVATE_KEY }} # 私钥
+          key: ${{ secrets.SSH_PRIVATE_KEY_NUXT_BLOG_PROD }} # 私钥
           source: '.output/*' # 构建后的文件路径
           target: /var/www/dixiaoping # 阿里云服务器上的目标路径
           script: |
